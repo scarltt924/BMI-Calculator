@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            margin: 0%;
+            padding: 0;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            font-family: 微軟正黑體;
+        }
+
+        .outside {
+            width: 600px;
+
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .content {
+            padding: 1.5% 25%;
+        }
+
+        .title-intro {
+            width: 340px;
+
+            font-size: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .content .value {
+            padding: 0 16%;
+        }
+
+        .content .btns {
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .ans {
+            color: rgb(0, 0, 0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border-radius: 3px;
+        }
+
+        footer {
+            width: 50%;
+            margin-top: 15px;
+            padding-bottom: 5%;
+
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .cm , .kg {
+            position: absolute;
+            margin: -23px 0 0 210px;
+        }
+
+        #weight {
+            margin-top: 5px;
+        }
+
+        .pic1 , .pic2 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
+
+
+    </style>
+</head>
+
+<body>
+    <div class="outside">
+        <div class="title"><img src="./img/bmi-01.png" style="width:600px" alt=""></div>
+        <div class="content">
+            <div class="title-intro"><b>● 計算公式：BMI = 體重(公斤) / 身高<sup>2</sup>(公尺<sup>2</sup>)</b></div>
+            <div class="value">
+                <label for="height">身高：</label>
+                <input type="text" id="height" placeholder="請輸入您的身高(cm)">
+                <div class="cm">cm</div>
+                <br>
+                <label for="weight">體重：</label>
+                <input type="text" id="weight" placeholder="請輸入您的體重(kg)">
+                <div class="kg">kg</div>
+            </div>
+            <br>
+            <div class="btns">
+                <button id="btn1">開始計算</button><button class="btn2">重新輸入</button>
+            </div>
+            <br>
+            <label for="ans"></label>
+            <div class="ans"
+                style="border: 1px solid rgb(10, 10, 10);background-color: #fbfff6;width: 325px;height: 80px;font-size: 14.5px;"></div>
+        </div>
+    </div>
+    <footer>
+        <div class="pic1">
+        <div class="img1"><img src="./img/Body_Mass_Index_001S.jpg" style="width:350px" alt=""></div><div class="pic1" style="font-size: 13px;">●女性參考對照表</div></div>
+        <div class="pic2">
+        <div class="img2"><img src="./img/Body_Mass_Index_002S.jpg" style="width:350px" alt=""></div><div class="pic2" for="img2" style="font-size: 13px;">●男性參考對照表</div></div>
+       
+    </footer>
+    <script>
+        var btn1 = document.querySelector('#btn1')
+        var btn2 = document.querySelector('.btn2')
+        var height = document.querySelector('#height')
+        var weight = document.querySelector('#weight')
+        var bmi = document.querySelector('.ans')
+
+        btn1.onclick = function () { 
+            bmi.value = weight.value / ((height.value / 100) ** 2)
+            if (bmi.value < 18.5) {
+                bmi.innerHTML = "你的BMI為 " + bmi.value.toFixed(1) + " : 過瘦！ "
+            } else if (18.5 <= bmi.value && bmi.value < 24) {
+                bmi.innerHTML = "你的BMI為 " + bmi.value.toFixed(1) + " : 正常範圍！ "
+            } else if (24 <= bmi.value && bmi.value < 27) {
+                bmi.innerHTML = "你的BMI為 " + bmi.value.toFixed(1) + " : 過重！ "
+            } else if (27 <= bmi.value && bmi.value < 30) {
+                bmi.innerHTML = "你的BMI為 " + bmi.value.toFixed(1) + " : 輕度肥胖！ "
+            } else if (30 <= bmi.value && bmi.value < 35) {
+                bmi.innerHTML = "你的BMI為 " + bmi.value.toFixed(1) + " : 中度肥胖！ "
+            } else if (35 <= bmi.value) {
+                bmi.innerHTML = "你的BMI為 " + bmi.value.toFixed(1) + " : 重度肥胖！請減肥.... "
+            } else if (!(weight.value == Number && height.value == Number)) {
+                bmi.innerHTML = " 你再亂打小心變胖喔 "
+            }
+            // if (weight.value < 1 || weight.value > 3000) {
+            //     bmi.innerHTML = " 你再亂打小心變胖喔 "
+            // } else 
+            if (height.value < 1 || height.value > 350) {
+                bmi.innerHTML = " 你再亂打小心變胖喔 "
+            } else if (isNaN(height.value) || isNaN(weught.value)) {
+                bmi.innerHTML = " 你再亂打小心變胖喔 "
+            }
+        }
+
+        btn2.onclick = function cleanstring() {
+            height.value = ""
+            height.value.innerHTML = ""
+            weight.value = ""
+            weight.value.innerHTML = ""
+            bmi.value = ""
+            bmi.innerHTML = ""
+        }
+
+    </script>
+</body>
+
+</html>
